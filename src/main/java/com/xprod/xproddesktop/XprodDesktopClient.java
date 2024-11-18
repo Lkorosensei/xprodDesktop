@@ -1,5 +1,6 @@
 package com.xprod.xproddesktop;
 
+import com.xprod.xproddesktop.dao.Connexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -35,6 +36,7 @@ public class XprodDesktopClient extends javax.swing.JFrame {
     }
     
     //Connexion
+    Connexion cn = new Connexion();
     Connection con;
     PreparedStatement pst;
 
@@ -43,8 +45,9 @@ public class XprodDesktopClient extends javax.swing.JFrame {
         int cpt;// déclaration d'une variable que je nomme compteur
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");//Register de MySQL Driver
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+            
+            con = cn.getCon();
+            
             String query = "SELECT * FROM produit";
             pst = con.prepareStatement(query);
 
@@ -267,9 +270,8 @@ public class XprodDesktopClient extends javax.swing.JFrame {
         String prixUHT = txtPRIXUHT.getText();
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");//Register de MySQL Driver
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+            con = cn.getCon();
 
             pst = con.prepareStatement("insert into produit (refproduit, designation, description, prixuht) values (?,?,?,?)");
 
@@ -318,9 +320,7 @@ public class XprodDesktopClient extends javax.swing.JFrame {
             String descriptif = txtDESCRIPTIF.getText();
             String prixUHT = txtPRIXUHT.getText();
 
-            Class.forName("com.mysql.cj.jdbc.Driver");//Register de MySQL Driver
-
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+           con = cn.getCon();
 
             pst = con.prepareStatement("update produit set refproduit=?, designation=?, description=?, prixuht=? where idproduit=?");
 
@@ -356,8 +356,9 @@ public class XprodDesktopClient extends javax.swing.JFrame {
         if (dialogResult == JOptionPane.YES_OPTION) {
 
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");   //Register de MySQL Diver
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+                
+                con = cn.getCon();
+                
                 pst = con.prepareStatement("delete from produit where idproduit=?");
                 pst.setInt(1, IDProduit);
                 pst.executeUpdate();
@@ -371,7 +372,7 @@ public class XprodDesktopClient extends javax.swing.JFrame {
 
                 tableUpdate(); //Mettre à jour la table des produits
 
-            } catch (ClassNotFoundException | SQLException ex) {
+            } catch (SQLException ex) {
                 Logger.getLogger(XprodDesktopClient.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

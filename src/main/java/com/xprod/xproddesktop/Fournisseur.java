@@ -1,5 +1,6 @@
 package com.xprod.xproddesktop;
 
+import com.xprod.xproddesktop.dao.Connexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,6 +28,7 @@ public class Fournisseur extends javax.swing.JFrame {
         tableUpdate(); //Mettre à jour la table des fournisseurs
     }
     //Connexion
+    Connexion cn = new Connexion();
     Connection con;
     PreparedStatement pst;
 
@@ -35,8 +37,9 @@ public class Fournisseur extends javax.swing.JFrame {
         int cpt;// déclaration d'une variable que je nomme compteur
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");//Register de MySQL Driver
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+            
+            con = cn.getCon();
+            
             String query = "SELECT * FROM fournisseur";
             pst = con.prepareStatement(query);
 
@@ -310,7 +313,7 @@ public class Fournisseur extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,9 +370,8 @@ public class Fournisseur extends javax.swing.JFrame {
         String emailFournisseur = txtEmail.getText();
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");//Register de MySQL Driver
-
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+            
+            con = cn.getCon();
 
             pst = con.prepareStatement("insert into fournisseur (nomFournisseur, rsFournisseur, rueFournisseur, cpFournisseur, villeFournisseur, paysFournisseur, telFournisseur, faxFournisseur, emailFournisseur) values (?,?,?,?,?,?,?,?,?)");
 
@@ -423,9 +425,7 @@ public class Fournisseur extends javax.swing.JFrame {
             String faxFournisseur = txtFax.getText();
             String emailFournisseur = txtEmail.getText();
 
-            Class.forName("com.mysql.cj.jdbc.Driver");//Register de MySQL Driver
-
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+            con = cn.getCon();
 
             pst = con.prepareStatement("update fournisseur set nomFournisseur=?, rsFournisseur=?, rueFournisseur=?, cpFournisseur=?, villeFournisseur=?, paysFournisseur=?, telFournisseur=?, faxFournisseur=?, emailFournisseur=? where idFournisseur=?");
 
@@ -470,8 +470,9 @@ public class Fournisseur extends javax.swing.JFrame {
         if (dialogResult == JOptionPane.YES_OPTION) {
             
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+                
+                con = cn.getCon();
+                
                 pst = con.prepareStatement("DELETE FROM fournisseur WHERE idFournisseur=?");
                 pst.setInt(1, IDFournisseur);
                 pst.executeUpdate();
@@ -491,7 +492,7 @@ public class Fournisseur extends javax.swing.JFrame {
                 
                 tableUpdate(); //Mettre à jour la table des fournisseurs
                 
-            } catch (ClassNotFoundException | SQLException ex) {
+            } catch (SQLException ex) {
                 Logger.getLogger(Fournisseur.class.getName()).log(Level.SEVERE, null, ex);
                 
             }

@@ -165,7 +165,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Entrez le nom d'utilisateur ou le mot de passe", "Message", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
-                    listLogin = udao.rechercheLogin(txtUsernameField.getText(), DataEncryption.getSHA1(txtPasswordField.getText()));
+                    listLogin = udao.rechercheLogin(txtUsernameField.getText(), DataEncryption.getSHA256(txtPasswordField.getText()));
                 if(listLogin.size()>= 1) { //Il faut qu'il y ait au moins un/1 User dans la tablea des Users de la DB
                     
                 if (listLogin.get(0).getAuthorization().equalsIgnoreCase("administrateur")) {

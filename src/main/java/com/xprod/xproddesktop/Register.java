@@ -1,5 +1,6 @@
 package com.xprod.xproddesktop;
 
+import com.xprod.xproddesktop.dao.Connexion;
 import com.xprod.xproddesktop.dao.UserDao;
 import com.xprod.xproddesktop.model.DataEncryption;
 import com.xprod.xproddesktop.model.Users;
@@ -33,6 +34,7 @@ public class Register extends javax.swing.JFrame {
     }
     
     //Connexion 
+    Connexion cn = new Connexion();
     Connection con;
     PreparedStatement pst;
     
@@ -41,8 +43,9 @@ public class Register extends javax.swing.JFrame {
         int cpt; //initialisation d'un compteur
         
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connexion au Driver
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+            
+            con = cn.getCon();
+            
             String query = "SELECT * FROM user";
             pst = con.prepareStatement(query);
             
@@ -135,6 +138,7 @@ public class Register extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Authorisation :");
 
+        tableUsers.setBackground(new java.awt.Color(242, 242, 242));
         tableUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -226,7 +230,7 @@ public class Register extends javax.swing.JFrame {
                 .addGap(53, 53, 53))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1040, 650));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1040, 650));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -269,7 +273,7 @@ public class Register extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Entrez le nom d'utilisateur ou le mot de passe", "Message", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
-                    listLogin = udao.rechercheLogin(txtUsernameReg.getText(), DataEncryption.getSHA1(txtPasswordReg.getText()));
+                    listLogin = udao.rechercheLogin(txtUsernameReg.getText(), DataEncryption.getSHA256(txtPasswordReg.getText()));
                 if(listLogin.size()>= 1) { //Il faut qu'il y ait au moins un/1 User dans la tablea des Users de la DB
                     
                 if (listLogin.get(0).getAuthorization().equalsIgnoreCase("administrateur")) {
@@ -293,19 +297,25 @@ public class Register extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         try {
+            
+            if (comboboxAuthorizationReg.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(this, "Veuillez choisir une autorisation valide !");
+                return;
+            }
+            
             //Je récupère les infos des champs de texte
             String usernameReg = txtUsernameReg.getText();
-            String passwordReg = DataEncryption.getSHA1(txtPasswordReg.getText()); // Password encrypté
-            //String authorizationReg = txtAuthorizationReg.getText();
+            String passwordReg = DataEncryption.getSHA256(txtPasswordReg.getText()); // Password encrypté
+            String authorizationReg = comboboxAuthorizationReg.getSelectedItem().toString();
             
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver"); //Register de MYSQL Diver
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root", "greta");
+                
+                con = cn.getCon();
                 
                 pst = con.prepareStatement("INSERT INTO  user (username, password,authorization) VALUES (?,?,?)");
                 pst.setString(1, usernameReg);
                 pst.setString(2, passwordReg);
-                //pst.setString(3, authorizationReg);
+                pst.setString(3, authorizationReg);
                 
                 pst.executeUpdate();
                 
@@ -315,9 +325,9 @@ public class Register extends javax.swing.JFrame {
                 //Je vide le contenu des champs remplis
                 txtUsernameReg.setText("");
                 txtPasswordReg.setText("");
-                //txtAuthorizationReg.setText("");
+                comboboxAuthorizationReg.setSelectedIndex(0);
                 
-                
+                tableUpdate();
                         
             } catch (Exception e) {
                 System.out.println("je suis dans le bouton "+ e);
@@ -337,15 +347,16 @@ public class Register extends javax.swing.JFrame {
         int dialogResult = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer cette utilisateur ?");
         if (dialogResult == JOptionPane.YES_OPTION) {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/xprod", "root","greta");
+                
+                con = cn.getCon();
+                
                 pst = con.prepareStatement("DELETE FROM user WHERE idUser = ?");
                 pst.setInt(1, IDUser);
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Utilisateur supprimé(e) !");
                 
                 tableUpdate();
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, e);
             }
         }
