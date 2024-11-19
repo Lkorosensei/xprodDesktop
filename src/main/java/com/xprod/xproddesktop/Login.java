@@ -11,14 +11,13 @@ import javax.swing.JOptionPane;
  *
  * @author Samir Ibrahim
  */
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JPanel {
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
-        this.setTitle("Connexion");
     }
 
     /**
@@ -30,6 +29,11 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanelLOGIN = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -38,14 +42,53 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtPasswordField = new javax.swing.JPasswordField();
         btnSignUp = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/connexion2.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(377, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(353, 353, 353))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         jPanel1.setBackground(new java.awt.Color(0, 176, 255));
 
@@ -122,42 +165,26 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(150, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 830, 400));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/connexion2.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(377, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(353, 353, 353))
+        javax.swing.GroupLayout jPanelLOGINLayout = new javax.swing.GroupLayout(jPanelLOGIN);
+        jPanelLOGIN.setLayout(jPanelLOGINLayout);
+        jPanelLOGINLayout.setHorizontalGroup(
+            jPanelLOGINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLOGINLayout.createSequentialGroup()
+                .addGroup(jPanelLOGINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+        jPanelLOGINLayout.setVerticalGroup(
+            jPanelLOGINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLOGINLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 130));
-
-        jMenuBar1.setBackground(new java.awt.Color(220, 220, 220));
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
-        pack();
+        add(jPanelLOGIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 550));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -171,18 +198,17 @@ public class Login extends javax.swing.JFrame {
                 if (listLogin.get(0).getAuthorization().equalsIgnoreCase("administrateur")) {
                     
                     //Page des adminstrateurs
-                    XprodDesktop desktopAdmin = new XprodDesktop();
-                    desktopAdmin.setVisible(true);
-                    desktopAdmin.afficherUser(txtUsernameField.getText());
-                    dispose();
+                    MainJFrame mainFrame = (MainJFrame) this.getTopLevelAncestor();
+                    mainFrame.showPanel("XprodDesktop");
+                   
                 } else {
-                    XprodDesktopClient desktopClient = new XprodDesktopClient();
-                    desktopClient.setVisible(true);
-                    desktopClient.afficherUser(txtUsernameField.getText());
-                    dispose();
+                    //Page des clients
+                    MainJFrame mainFrame = (MainJFrame) this.getTopLevelAncestor();
+                    mainFrame.showPanel("XprodDesktopClient");
                 }
                 }
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erreur lors de la connexion !");
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -234,11 +260,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanelLOGIN;
     private javax.swing.JPasswordField txtPasswordField;
     private javax.swing.JTextField txtUsernameField;
     // End of variables declaration//GEN-END:variables

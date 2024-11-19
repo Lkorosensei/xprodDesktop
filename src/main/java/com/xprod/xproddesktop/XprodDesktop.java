@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author william NYACKA
+ * @author Samir Ibrahim
  */
 public class XprodDesktop extends javax.swing.JFrame {
 
@@ -87,6 +87,7 @@ public class XprodDesktop extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePRODUIT = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -114,6 +115,8 @@ public class XprodDesktop extends javax.swing.JFrame {
         jMenuItemAddCommande = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -301,7 +304,7 @@ public class XprodDesktop extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -474,8 +477,8 @@ public class XprodDesktop extends javax.swing.JFrame {
             }
         });
         
-        Login.main(args);
-        Fournisseur.main(args);
+        //Login.main(args);
+        //Fournisseur.main(args);
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -494,6 +497,7 @@ public class XprodDesktop extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemAddCommande;
     private javax.swing.JMenuItem jMenuItemAddFournisseur;
     private javax.swing.JPanel jPanel1;

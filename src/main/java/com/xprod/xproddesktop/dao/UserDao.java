@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author william NYACKA
+ * @author Samir Ibrahim
  */
 public class UserDao {
 

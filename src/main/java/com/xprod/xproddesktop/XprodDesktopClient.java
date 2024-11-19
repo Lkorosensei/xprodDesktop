@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author william NYACKA
+ * @author Samir Ibrahim
  */
 public class XprodDesktopClient extends javax.swing.JFrame {
 

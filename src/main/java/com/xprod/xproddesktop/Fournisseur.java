@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author willi
+ * @author Samir Ibrahim
  */
 public class Fournisseur extends javax.swing.JFrame {
 

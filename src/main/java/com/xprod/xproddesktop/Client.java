@@ -6,7 +6,7 @@ package com.xprod.xproddesktop;
 
 /**
  *
- * @author stagiaire
+ * @author Samir Ibrahim
  */
 public class Client extends javax.swing.JFrame {
 
@@ -49,7 +49,7 @@ public class Client extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableClient = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -153,8 +153,8 @@ public class Client extends javax.swing.JFrame {
 
         jTextField8.setText("jTextField8");
 
-        jTable1.setBackground(new java.awt.Color(242, 242, 242));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableClient.setBackground(new java.awt.Color(242, 242, 242));
+        tableClient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -165,7 +165,7 @@ public class Client extends javax.swing.JFrame {
                 "ID", "NOM", "ADRESSE", "CP", "VIILLE", "PAYS", "TEL", "EMAIL"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableClient);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -347,7 +347,6 @@ public class Client extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -356,5 +355,6 @@ public class Client extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable tableClient;
     // End of variables declaration//GEN-END:variables
 }
