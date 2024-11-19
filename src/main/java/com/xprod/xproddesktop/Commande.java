@@ -237,7 +237,7 @@ public class Commande extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID PRODUIT", "REF", "DESIGNATION", "DESCRIPTION", "PRIX UHT", "QTE", "PRIX THE"
+                "ID PRODUIT", "REF", "DESIGNATION", "DESCRIPTION", "PRIX UHT", "QTE", "PRIX THC"
             }
         ));
         jScrollPane3.setViewportView(tableCommande);
@@ -551,10 +551,10 @@ public class Commande extends javax.swing.JFrame {
         
         //Ajout dans la table des commandes
         String idProduit = dtm.getValueAt(selectedIndex, 0).toString();
-        String txtRefProduit = dtm.getValueAt(selectedIndex, 0).toString();
-        String txtDesignationProduit = dtm.getValueAt(selectedIndex, 0).toString();
-        String txtDescriptifProduit = dtm.getValueAt(selectedIndex, 0).toString();
-        double txtPrixUHTProduit = Double.parseDouble(dtm.getValueAt(selectedIndex, 0).toString());
+        String txtRefProduit = dtm.getValueAt(selectedIndex, 1).toString();
+        String txtDesignationProduit = dtm.getValueAt(selectedIndex, 2).toString();
+        String txtDescriptifProduit = dtm.getValueAt(selectedIndex, 3).toString();
+        double txtPrixUHTProduit = Double.parseDouble(dtm.getValueAt(selectedIndex, 4).toString());
         int qte = Integer.parseInt(JOptionPane.showInputDialog(null, "Entrer la quantité :"));
         
         double tot = txtPrixUHTProduit * qte;
