@@ -1,11 +1,13 @@
 package com.xprod.xproddesktop;
 
 import com.xprod.xproddesktop.dao.Connexion;
+import java.awt.print.PrinterException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.Vector;
+import javax.print.PrintException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -139,15 +141,15 @@ public class Commande extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtPrenomClientProduitCMD = new javax.swing.JTextField();
-        txtNomClientProduitCMD = new javax.swing.JTextField();
+        txtPrenomCMD = new javax.swing.JTextField();
+        txtNomCMD = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableCommande = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtBill = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtTVACMD = new javax.swing.JTextField();
@@ -156,9 +158,10 @@ public class Commande extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCreateBill = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         txtFraisPort = new javax.swing.JTextField();
+        btnPrintBill = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -248,9 +251,9 @@ public class Commande extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
         jLabel15.setText("Frais de port");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        txtBill.setColumns(20);
+        txtBill.setRows(5);
+        jScrollPane4.setViewportView(txtBill);
 
         jLabel16.setText("T.V.A :");
 
@@ -280,9 +283,25 @@ public class Commande extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Créer la facture");
+        btnCreateBill.setForeground(new java.awt.Color(1, 85, 147));
+        btnCreateBill.setText("Créer la facture");
+        btnCreateBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateBillActionPerformed(evt);
+            }
+        });
 
         jLabel18.setText("Frais de port :");
+
+        btnPrintBill.setBackground(new java.awt.Color(0, 0, 0));
+        btnPrintBill.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnPrintBill.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrintBill.setText("Imprimer la facture");
+        btnPrintBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintBillActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -295,50 +314,49 @@ public class Commande extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(277, 277, 277))
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(17, 17, 17)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jLabel10))
+                                        .addComponent(txtDesignationProduitCMD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDescriptifProduitCMD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtRefProduitCMD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtPrixUHTProduitCMD, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                                .addComponent(txtQteProduitCMD)
-                                                .addComponent(txtPrixTHTProduitCMD)))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(17, 17, 17)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtDesignationProduitCMD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtDescriptifProduitCMD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtRefProduitCMD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnCreateBill)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtPrixUHTProduitCMD, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                            .addComponent(txtQteProduitCMD)
+                                            .addComponent(txtPrixTHTProduitCMD)))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel11)
-                                                .addComponent(jLabel12))
-                                            .addGap(41, 41, 41)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtPrenomClientProduitCMD, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                                .addComponent(txtNomClientProduitCMD)))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(224, 224, 224)))
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel12))
+                                    .addGap(41, 41, 41)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtPrenomCMD, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                        .addComponent(txtNomCMD)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(btnPrintBill)
+                                    .addGap(57, 57, 57))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14)
@@ -400,7 +418,7 @@ public class Commande extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(txtRefProduitCMD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
-                            .addComponent(txtPrenomClientProduitCMD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPrenomCMD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
@@ -410,7 +428,7 @@ public class Commande extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNomClientProduitCMD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNomCMD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12))))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -460,7 +478,8 @@ public class Commande extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnCreateBill)
+                    .addComponent(btnPrintBill))
                 .addGap(45, 45, 45))
         );
 
@@ -597,6 +616,80 @@ public class Commande extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrixTTCCMdActionPerformed
 
+    private void btnPrintBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintBillActionPerformed
+        
+        try {
+            //Print Bill
+            boolean complete = txtBill.print();
+            
+            if (complete) {
+                JOptionPane.showMessageDialog(null, "Impression réussi", "Message", JOptionPane.INFORMATION_MESSAGE);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Impression en cours", "Imprimante", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_btnPrintBillActionPerformed
+
+    private void btnCreateBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateBillActionPerformed
+        double totalTTC = Double.parseDouble(txtPrixTTCCMd.getText());
+        double tva = Double.parseDouble(txtTVACMD.getText());
+        double fraisPort = Double.parseDouble(txtFraisPort.getText());
+        String prenomClient = txtPrenomCMD.getText();
+        String nomClient = txtNomCMD.getText();
+        /*String Ref = txtREFProduitCmd.getText();
+        String Designation = txtDESIGNATIONProduitCmd.getText();
+        String Description = txtDESCRIPTIFProduitCmd.getText();
+        String PrixUHT = txtPRIXUHTProduitCmd.getText();
+        String QTE = txtQTEProduitCmd.getText();
+        String PrixTHT = txtPRIXTHTProduitCmd.getText();*/
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        model = (DefaultTableModel) tableCommande.getModel();
+
+        txtBill.setText(txtBill.getText() + "*************************************************************************************************************\n");
+        txtBill.setText(txtBill.getText() + "**********************************          FACTURE XPROD           ****************************************\n");
+        txtBill.setText(txtBill.getText() + "*************************************************************************************************************\n");
+        //Heading
+        txtBill.setText(txtBill.getText() + "REF" + "\t" + "DESIGNATION" + "\t" + "DESCRIPTION" + "\t" + "PRIX UHT" + "\t" + "QTE" + "\t" + "PRIX THT" + "\n");
+        //Valeurs
+        /*txtBill.setText(txtBill.getText() + Ref + "\t" + Designation + "\t" + Description + "\t" + PrixUHT + "\t" + QTE + "\t" + PrixTHT + "\n");
+
+        txtBill.setText(txtBill.getText() + "\n");
+
+        txtBill.setText(txtBill.getText() + "TotalTTC" + "\t" + totalTTC + " €\n");
+        txtBill.setText(txtBill.getText() + "TVA" + "\t" + tva + " €\n");
+        txtBill.setText(txtBill.getText() + "Frais de port" + "\t" + fraisPort + " €\n");*/
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            String ref = (String) model.getValueAt(i, 1);
+            String designation = (String) model.getValueAt(i, 2);
+            String descriptif = (String) model.getValueAt(i, 3);
+
+            Double prixU = (Double) model.getValueAt(i, 4);
+            int qte = (int) model.getValueAt(i, 5);
+            Double prixtht = (Double) model.getValueAt(i, 6);
+
+            txtBill.setText(txtBill.getText() + ref + "\t" + designation + "\t" + descriptif + "\t" + prixU + "\t" + qte + "\t" + prixtht + "\n");
+        }
+
+        txtBill.setText(txtBill.getText() + "\n");
+        txtBill.setText(txtBill.getText() + "\n");
+        txtBill.setText(txtBill.getText() + "\n");
+
+        txtBill.setText(txtBill.getText() + "\t" + "\t" + "\t" + "\t" + "TVA :" + "\t" + tva + " €\n");
+        txtBill.setText(txtBill.getText() + "\t" + "\t" + "\t" + "\t" + "Total TTC :" + "\t" + totalTTC + " €\n");
+        txtBill.setText(txtBill.getText() + "\t" + "\t" + "\t" + "\t" + "Frais de port :" + "\t" + fraisPort + " €\n");
+        txtBill.setText(txtBill.getText() + "\n");
+        txtBill.setText(txtBill.getText() + "*************************************************************************************************************\n");
+        txtBill.setText(txtBill.getText() + "                                      MERCI POUR VOTRE VISITE ! À BIENTÔT !\n");
+
+ 
+    }//GEN-LAST:event_btnCreateBillActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -633,9 +726,10 @@ public class Commande extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreateBill;
+    private javax.swing.JButton btnPrintBill;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -665,16 +759,16 @@ public class Commande extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTable tableClients;
     private javax.swing.JTable tableCommande;
     private javax.swing.JTable tableProduitCommande;
+    private javax.swing.JTextArea txtBill;
     private javax.swing.JTextField txtDescriptifProduitCMD;
     private javax.swing.JTextField txtDesignationProduitCMD;
     private javax.swing.JTextField txtFraisPort;
-    private javax.swing.JTextField txtNomClientProduitCMD;
-    private javax.swing.JTextField txtPrenomClientProduitCMD;
+    private javax.swing.JTextField txtNomCMD;
+    private javax.swing.JTextField txtPrenomCMD;
     private javax.swing.JTextField txtPrixTHTProduitCMD;
     private javax.swing.JTextField txtPrixTTCCMd;
     private javax.swing.JTextField txtPrixUHTProduitCMD;
